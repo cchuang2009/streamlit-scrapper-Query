@@ -5,7 +5,7 @@ import requests
 import geoip2.database
 
 # path to GeoLite2-Country.mmdb file
-reader = geoip2.database.Reader('data/GeoLite2-Country.mmdb')
+reader = geoip2.database.Reader('GeoLite2-Country.mmdb')
 
 # translations
 translations = {
@@ -31,7 +31,7 @@ translations = {
 #TAI_ind = 'https://isin.twse.com.tw/isin/C_public.jsp?strMode=2'
 #df = pd.read_html(TAI_ind, encoding='cp950')
 #df1 = pd.DataFrame(df[0][0][2:].str.split('\u3000').tolist(), columns=['Symbol', 'Name'])
-df1=pd.read_csv("data/TWSE_TW-1.csv",index_col=0)
+df1=pd.read_csv("TWSE.csv",index_col=0)
 df1.fillna('', inplace=True)
 # set up state
 state = st.session_state
@@ -64,8 +64,13 @@ def locate():
 
 state.lang=locate()
 
-state.search_by = translations[state.lang]['symbol_option']
-state.search_term = ''
+if 'lang' not in state:
+    state.lang = 'en'
+    state.search_by = translations[state.lang]['symbol_option']
+    state.search_term = ''
+else:    
+    state.search_by = translations[state.lang]['symbol_option']
+    state.search_term = ''
 
 #st.write(state.lang,translations[state.lang]['search_option'])
 
