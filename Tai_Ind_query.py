@@ -31,7 +31,7 @@ translations = {
 #TAI_ind = 'https://isin.twse.com.tw/isin/C_public.jsp?strMode=2'
 #df = pd.read_html(TAI_ind, encoding='cp950')
 #df1 = pd.DataFrame(df[0][0][2:].str.split('\u3000').tolist(), columns=['Symbol', 'Name'])
-df1=pd.read_csv("data/TWSE_TW-1.csv",index_col=0)
+df1=pd.read_csv("data/TWSE_TW-1.csv")
 df1.fillna('', inplace=True)
 # set up state
 state = st.session_state
