@@ -28,9 +28,6 @@ translations = {
 }
 
 # read data
-#TAI_ind = 'https://isin.twse.com.tw/isin/C_public.jsp?strMode=2'
-#df = pd.read_html(TAI_ind, encoding='cp950')
-#df1 = pd.DataFrame(df[0][0][2:].str.split('\u3000').tolist(), columns=['Symbol', 'Name'])
 df1=pd.read_csv("data/TWSE_TW-1.csv")
 df1.fillna('', inplace=True)
 # set up state
@@ -74,14 +71,7 @@ else:
 
 #st.write(state.lang,translations[state.lang]['search_option'])
 
-#if 'lang' not in state:
-#    state.lang = 'en'
-#if 'search_by' not in state:
-#    state.search_by = translations[state.lang]['symbol_option']
-#if 'search_term' not in state:
-#    state.search_term = ''
-    
-# set up sidebar
+# main page
 st.sidebar.title(translations[state.lang]['language'])
 if state.lang=='en':
     state.lang = st.sidebar.radio('', ['en', 'zh'])
